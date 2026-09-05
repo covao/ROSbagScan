@@ -1,24 +1,22 @@
-# ROSbagScan
+# ROS2bag Analyzer
 ![Demo Image](./demo.gif)
 
 ## Overview
-ROSbagScan is a browser-based tool for loading, comparing, and plotting ROS 2 rosbag2 data from MCAP and SQLite3 files.
+ROS2bag Analyzer is a browser-based tool for loading, comparing, and plotting ROS 2 rosbag2 data from MCAP and SQLite3 files.
 
 ## Version
-Current development release: **v0.1.0**.
+Current development release: **v0.0.18**.
 
-ROSbagScan uses [Semantic Versioning](https://semver.org/) with `major.minor.patch`. Major version `0` indicates active development.
-
-Version 0.1.0 is the first release under the ROSbagScan name. Project ZIP files exported by ROS2bag Analyzer v0.0.18 remain importable.
+ROS2bag Analyzer uses [Semantic Versioning](https://semver.org/) with `major.minor.patch`. Major version `0` indicates active development.
 
 ## Quick Start
 Open the web application:
 
-https://covao.github.io/ROSbagScan/ROSbagScan.html
+https://covao.github.io/ROS2bagAnalyzer/ROS2bagAnalyzer.html
 
 GitHub repository:
 
-https://github.com/covao/ROSbagScan
+https://github.com/covao/ROS2bagAnalyzer
 
 ## Features
 - Editable plotter names and per-dataset line colors
@@ -63,24 +61,24 @@ https://github.com/covao/ROSbagScan
 - Internet access for CDN libraries, or local library files for offline use
 
 ## Usage
-Open `ROSbagScan.html` in a supported browser or serve it from a local web server. Load one or more rosbag files with the **Open files** icon or drag and drop `.mcap`, `.db3`, or `.zip` files into the application. Select the rosbag datasets to display, then drag signals from the **Signals** menu onto a plotter. Add more plotters from the title bar and select Time or X-Y mode for each plotter.
+Open `ROS2bagAnalyzer.html` in a supported browser or serve it from a local web server. Load one or more rosbag files with the **Open files** icon or drag and drop `.mcap`, `.db3`, or `.zip` files into the application. Select the rosbag datasets to display, then drag signals from the **Signals** menu onto a plotter. Add more plotters from the title bar and select Time or X-Y mode for each plotter.
 
 To load a Project ZIP automatically, use the `project` URL hash parameter:
 
 ```text
-ROSbagScan.html#project=https%3A%2F%2Fexample.com%2FROSbagScan_project.zip
+ROS2bagAnalyzer.html#project=https%3A%2F%2Fexample.com%2FROS2bagAnalyzer_project.zip
 ```
 
 To load one rosbag directly from a URL, use `rosbag`:
 
 ```text
-ROSbagScan.html#rosbag=https%3A%2F%2Fd3al8lo5i04x19.cloudfront.net%2F4f95d3ba-0015-46ca-9479-516e1e014d0e%2F1%2Frosbag2_autoware.mcap
+ROS2bagAnalyzer.html#rosbag=https%3A%2F%2Fd3al8lo5i04x19.cloudfront.net%2F4f95d3ba-0015-46ca-9479-516e1e014d0e%2F1%2Frosbag2_autoware.mcap
 ```
 
 To load multiple rosbag datasets, repeat the `rosbag` parameter. Each URL is loaded as a separate dataset:
 
 ```text
-ROSbagScan.html#rosbag=https%3A%2F%2Fexample.com%2Frun1.mcap&rosbag=https%3A%2F%2Fexample.com%2Frun2.mcap
+ROS2bagAnalyzer.html#rosbag=https%3A%2F%2Fexample.com%2Frun1.mcap&rosbag=https%3A%2F%2Fexample.com%2Frun2.mcap
 ```
 
 Comma-separated values are also accepted. `bag` and `mcap` are aliases, and the existing `zip` parameter remains supported for rosbag ZIP files. A Project URL can be combined with rosbag URLs; the Project is imported first and the rosbag datasets are then added.
