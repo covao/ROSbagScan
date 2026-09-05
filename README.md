@@ -1,22 +1,24 @@
-# ROS2bag Analyzer
+# ROSbagScan
 ![Demo Image](./demo.gif)
 
 ## Overview
-ROS2bag Analyzer is a browser-based tool for loading, comparing, and plotting ROS 2 rosbag2 data from MCAP and SQLite3 files.
+ROSbagScan is a browser-based tool for loading, comparing, and plotting ROS 2 rosbag2 data from MCAP and SQLite3 files.
 
 ## Version
-Current development release: **v0.0.18**.
+Current development release: **v0.1.1**.
 
-ROS2bag Analyzer uses [Semantic Versioning](https://semver.org/) with `major.minor.patch`. Major version `0` indicates active development.
+ROSbagScan uses [Semantic Versioning](https://semver.org/) with `major.minor.patch`. Major version `0` indicates active development.
+
+Version 0.1.0 is the first release under the ROSbagScan name. Project ZIP files exported by ROS2bag Analyzer v0.0.18 remain importable.
 
 ## Quick Start
-Open the web application:
+Open the web application with the AI Challenge 2026 sample project and rosbag:
 
-https://covao.github.io/ROS2bagAnalyzer/ROS2bagAnalyzer.html
+https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_aic2026_dummy_project.zip&rosbag=https://covao.github.io/ROSbagScan/sample/rosbag2_autoware_sample.mcap
 
 GitHub repository:
 
-https://github.com/covao/ROS2bagAnalyzer
+https://github.com/covao/ROSbagScan
 
 ## Features
 - Editable plotter names and per-dataset line colors
@@ -61,24 +63,23 @@ https://github.com/covao/ROS2bagAnalyzer
 - Internet access for CDN libraries, or local library files for offline use
 
 ## Usage
-Open `ROS2bagAnalyzer.html` in a supported browser or serve it from a local web server. Load one or more rosbag files with the **Open files** icon or drag and drop `.mcap`, `.db3`, or `.zip` files into the application. Select the rosbag datasets to display, then drag signals from the **Signals** menu onto a plotter. Add more plotters from the title bar and select Time or X-Y mode for each plotter.
+Open `ROSbagScan.html` in a supported browser or serve it from a local web server. Load one or more rosbag files with the **Open files** icon or drag and drop `.mcap`, `.db3`, or `.zip` files into the application. Select the rosbag datasets to display, then drag signals from the **Signals** menu onto a plotter. Add more plotters from the title bar and select Time or X-Y mode for each plotter.
 
-To load a Project ZIP automatically, use the `project` URL hash parameter:
+### Demo projects
 
-```text
-ROS2bagAnalyzer.html#project=https%3A%2F%2Fexample.com%2FROS2bagAnalyzer_project.zip
-```
+- [Compare two ROSBag datasets](https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_AIC2026_project.zip)
+- [Dummy-data project](https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_aic2026_dummy_project.zip)
 
-To load one rosbag directly from a URL, use `rosbag`:
+### Load a ROSBag file from a URL
 
-```text
-ROS2bagAnalyzer.html#rosbag=https%3A%2F%2Fd3al8lo5i04x19.cloudfront.net%2F4f95d3ba-0015-46ca-9479-516e1e014d0e%2F1%2Frosbag2_autoware.mcap
-```
+[Load the sample ROSBag into the dummy-data project](https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_aic2026_dummy_project.zip&rosbag=https://covao.github.io/ROSbagScan/sample/rosbag2_autoware_sample.mcap)
+
+The rosbag supplied by the `rosbag` parameter replaces the single dummy dataset regardless of its recorded time range.
 
 To load multiple rosbag datasets, repeat the `rosbag` parameter. Each URL is loaded as a separate dataset:
 
 ```text
-ROS2bagAnalyzer.html#rosbag=https%3A%2F%2Fexample.com%2Frun1.mcap&rosbag=https%3A%2F%2Fexample.com%2Frun2.mcap
+ROSbagScan.html#rosbag=https%3A%2F%2Fexample.com%2Frun1.mcap&rosbag=https%3A%2F%2Fexample.com%2Frun2.mcap
 ```
 
 Comma-separated values are also accepted. `bag` and `mcap` are aliases, and the existing `zip` parameter remains supported for rosbag ZIP files. A Project URL can be combined with rosbag URLs; the Project is imported first and the rosbag datasets are then added.

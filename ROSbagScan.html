@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ROSbagScan</title>
-<meta name="application-version" content="0.1.0">
+<meta name="application-version" content="0.1.1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
 <style>
 :root{
@@ -58,7 +58,7 @@ body.theme-dark .plotter-card.drag-over{background:#1a302e}
 <header id="titlebar">
   <button id="btn-menu" class="title-btn" title="Toggle Signals menu" aria-label="Toggle Signals menu">☰</button>
   <a class="icon-link" href="https://github.com/covao/ROSbagScan" target="_blank" rel="noopener" title="Open ROSbagScan on GitHub" aria-label="Open GitHub">📈</a>
-  <div class="app-info"><div class="app-title-line"><span class="app-title">ROSbagScan</span><span class="app-version">v0.1.0</span></div></div>
+  <div class="app-info"><div class="app-title-line"><span class="app-title">ROSbagScan</span><span class="app-version">v0.1.1</span></div></div>
   <span class="title-spacer"></span>
   <button id="btn-add-plotter" class="title-btn" title="Add plotter" aria-label="Add plotter">＋</button>
   <button id="btn-cursor" class="title-btn" title="Toggle synchronized cursor" aria-label="Toggle synchronized cursor">⌖</button>
@@ -118,7 +118,7 @@ body.theme-dark .plotter-card.drag-over{background:#1a302e}
 'use strict';
 
 const APP_NAME = 'ROSbagScan';
-const APP_VERSION = '0.1.0';
+const APP_VERSION = '0.1.1';
 const LEGACY_PROJECT_APPS = new Set(['ROS2bag Analyzer']);
 
 const PRIMS = {
@@ -776,7 +776,7 @@ async function autoLoadFromHash(){if(location.hash===lastAutoLoadHash)return;las
 
 function normalizedDatasetName(name){return String(name||'').toLowerCase().split(/[\\/]/).pop().replace(/\.(mcap|db3|db|sqlite3|zip)$/i,'').replace(/[^a-z0-9]+/g,'');}
 function bagTopicSignature(bag){return [...bag.topics.values()].map(t=>t.name+'|'+t.type).sort().join('\n');}
-function findDummyReplacement(candidate,label){const dummies=state.bagSets.filter(b=>b.isDummy);if(!dummies.length)return null;const target=normalizedDatasetName(label);let match=dummies.find(b=>normalizedDatasetName(b.name)===target);if(match)return match;const srcNames=(candidate.sources||[]).map(s=>normalizedDatasetName(s.name)).filter(Boolean);match=dummies.find(b=>(b.originalSourceNames||[]).some(n=>srcNames.includes(normalizedDatasetName(n))));if(match)return match;const sig=bagTopicSignature(candidate);const same=dummies.filter(b=>bagTopicSignature(b)===sig);return same.length===1?same[0]:null;}
+function findDummyReplacement(candidate,label){const dummies=state.bagSets.filter(b=>b.isDummy);if(!dummies.length)return null;if(dummies.length===1)return dummies[0];const target=normalizedDatasetName(label);let match=dummies.find(b=>normalizedDatasetName(b.name)===target);if(match)return match;const srcNames=(candidate.sources||[]).map(s=>normalizedDatasetName(s.name)).filter(Boolean);match=dummies.find(b=>(b.originalSourceNames||[]).some(n=>srcNames.includes(normalizedDatasetName(n))));if(match)return match;const sig=bagTopicSignature(candidate);const same=dummies.filter(b=>bagTopicSignature(b)===sig);return same.length===1?same[0]:null;}
 function clearBagCache(id){for(const k of [...state.cache.keys()])if(k.startsWith(String(id)+'\u0001'))state.cache.delete(k);}
 function addBagSet(loaded,label,options={}){
   const bagId=state.nextBagId++;const bag={id:bagId,name:label,enabled:true,color:PALETTE[(bagId-1)%PALETTE.length],isDummy:false,originalSourceNames:loaded.map(x=>x.name),sources:[],topics:new Map(),t0:null,t1:null,totalMsgs:0};
