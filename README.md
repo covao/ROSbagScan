@@ -4,11 +4,27 @@
 ## Overview
 ROSbagScan is a browser-based tool for loading, comparing, and plotting ROS 2 rosbag2 data from MCAP and SQLite3 files.
 
+## Version
+Current development release: **v0.1.3**.
+
+ROSbagScan uses [Semantic Versioning](https://semver.org/) with `major.minor.patch`. Major version `0` indicates active development.
+
+Version 0.1.0 is the first release under the ROSbagScan name. Project ZIP files exported by ROS2bag Analyzer v0.0.18 remain importable.
+
 ## Quick Start
-Open the web application with the sample project and rosbag:
-https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_AIC2026_project.zip
+Open the web application with the AI Challenge 2026 sample project and rosbag:
+
+https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_aic2026_dummy_project.zip&rosbag=https://covao.github.io/ROSbagScan/sample/rosbag2_autoware_sample.mcap
+
+GitHub repository:
+
+https://github.com/covao/ROSbagScan
 
 ## Features
+- Show the imported Project ZIP filename in the Project menu
+- Rename a replaced dummy dataset to the imported rosbag filename
+- Use signal-specific colors and matching color dots on removable signal chips for multi-signal Time plots when one rosbag is enabled
+- Use a simplified Time cursor label and a high-contrast white cursor line in dark mode
 - Editable plotter names and per-dataset line colors
 - Dummy project datasets are replaced by matching real rosbags while preserving line colors
 - Signal search includes engineering-unit text
@@ -55,6 +71,7 @@ Open `ROSbagScan.html` in a supported browser or serve it from a local web serve
 
 ### Demo projects
 
+- [Compare two ROSBag datasets](https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_AIC2026_project.zip)
 - [Dummy-data project](https://covao.github.io/ROSbagScan/ROSbagScan.html#project=https://covao.github.io/ROSbagScan/sample/ROSbagScan_aic2026_dummy_project.zip)
 
 ### Load a ROSBag file from a URL
@@ -72,6 +89,7 @@ ROSbagScan.html#rosbag=https%3A%2F%2Fexample.com%2Frun1.mcap&rosbag=https%3A%2F%
 Comma-separated values are also accepted. `bag` and `mcap` are aliases, and the existing `zip` parameter remains supported for rosbag ZIP files. A Project URL can be combined with rosbag URLs; the Project is imported first and the rosbag datasets are then added.
 
 Remote servers must allow cross-origin access (CORS). Encode URLs when they contain `&`, `#`, or other characters that have meaning in the browser URL.
+
 
 For an X-Y plotter, click the `⌗` button to import a `.geojson` or `.json` file. Polygon and line geometries are rendered as road-outline background layers. Project Export automatically includes the imported GeoJSON files, and Project Import restores them.
 
